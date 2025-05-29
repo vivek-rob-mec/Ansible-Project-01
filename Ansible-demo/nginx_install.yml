@@ -1,0 +1,17 @@
+---
+
+- name: Installing Nginx and configuring it 
+  hosts: webserver                            # since we used [webserver] as host name in inventory.ini file
+  become: true                                # either we can use true or yes
+
+  tasks:
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+    
+    - name: Start Nginx
+      service: 
+        name: nginx
+        state: started
+        enabled: true
